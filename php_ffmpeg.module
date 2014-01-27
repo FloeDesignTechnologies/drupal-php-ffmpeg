@@ -109,6 +109,7 @@ function php_ffmpeg_libraries_info() {
  * Version callback for php_ffmpeg_libraries_info().
  */
 function _php_ffmpeg_libraries_version($library) {
+  module_load_include('admin.inc', 'composer_manager');
   $composer_manager_installed_packages = composer_manager_installed_packages();
   switch ($library['machine name']) {
     case 'php-ffmpeg':
