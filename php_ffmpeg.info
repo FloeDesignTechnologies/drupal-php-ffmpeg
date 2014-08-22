@@ -3,6 +3,7 @@ description = Integrates with the PHP FFmpeg library.
 core = 7.x
 package = Development
 dependencies[] = composer_manager
+dependencies[] = libraries
 files[] = includes/PHPFFMpegLogger.inc
 files[] = includes/PHPFFMpegCache.inc
 configure = admin/config/development/php-ffmpeg
