@@ -4,6 +4,8 @@ This project is an API module that integrate with the PHP FFmpeg (https://github
 library. This module doesn't do anything by itself and is usually extended by
 other projects that do something useful with FFmpeg.
 
+[![Build Status](https://travis-ci.org/FloeDesignTechnologies/drupal-php-ffmpeg.svg?branch=7.x-1.x)](https://travis-ci.org/FloeDesignTechnologies/drupal-php-ffmpeg)
+
 Installation
 ------------
 
