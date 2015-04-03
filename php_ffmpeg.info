@@ -6,4 +6,5 @@ dependencies[] = composer_manager
 dependencies[] = libraries
 files[] = includes/PHPFFMpegLogger.inc
 files[] = includes/PHPFFMpegCache.inc
+files[] = test/includes/PHPFFMpegCache.test
 configure = admin/config/development/php-ffmpeg
