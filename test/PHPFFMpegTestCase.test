@@ -97,8 +97,11 @@ class PHPFFMpegTestCase extends DrupalWebTestCase {
   }
 
   public function testFactories() {
-    variable_set('php_ffmpeg_ffmpeg_binary', '/usr/bin/ffmpeg');
-    variable_set('php_ffmpeg_ffprobe_binary', '/usr/bin/ffprobe');
+
+    chmod(drupal_realpath($this->drupalGetTestFiles('binary')[0]->uri), 0777);
+    chmod(drupal_realpath($this->drupalGetTestFiles('binary')[1]->uri), 0777);
+    variable_set('php_ffmpeg_ffmpeg_binary', drupal_realpath($this->drupalGetTestFiles('binary')[0]->uri));
+    variable_set('php_ffmpeg_ffprobe_binary', drupal_realpath($this->drupalGetTestFiles('binary')[1]->uri));
 
     /** @var \FFMpeg\FFMpeg $ffmpeg */
     $ffmpeg = php_ffmpeg();

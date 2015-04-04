@@ -30,10 +30,6 @@ install:
   # install drush globally
   - composer global require drush/drush:6.*
 
-  # install ffmpeg
-  - sudo add-apt-repository ppa:mc3man/trusty-media -y
-  - sudo apt-get update -q
-  - sudo apt-get-install -y ffmpeg
 
 before_script:
   # navigate out of module directory to prevent blown stack by recursive module lookup
