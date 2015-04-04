@@ -90,4 +90,22 @@ class PHPFFMpegTestCase extends DrupalWebTestCase {
     $this->assertEqual(variable_get('php_ffmpeg_threads'), $php_ffmpeg_threads, 'Submitting he PHP-FFMpeg settings page with invalid values should not update the ffmpeg command threads number.');
 
   }
+
+  public function testLibraries() {
+    $library = libraries_detect('php-ffmpeg');
+    $this->assertTrue($library['installed'], 'The PHP-FFMpeg library should be available through the libraries API');
+  }
+
+  public function testFactories() {
+    variable_set('php_ffmpeg_ffmpeg_binary', '/usr/bin/ffmpeg');
+    variable_set('php_ffmpeg_ffprobe_binary', '/usr/bin/ffprobe');
+
+    /** @var \FFMpeg\FFMpeg $ffmpeg */
+    $ffmpeg = php_ffmpeg();
+    $this->assertTrue($ffmpeg instanceof \FFMpeg\FFMpeg, 'php_ffmpeg() should return a instance of \FFMpeg\FFMpeg.');
+
+    /** @var \FFMpeg\FFProbe $ffprobe */
+    $ffprobe = php_ffmpeg_probe();
+    $this->assertTrue($ffprobe instanceof \FFMpeg\FFProbe, 'php_ffmpeg_probe() should return a instance of \FFMpeg\FFProbe.');
+  }
 }
