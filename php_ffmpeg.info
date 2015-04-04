@@ -4,6 +4,7 @@ core = 7.x
 package = Development
 dependencies[] = composer_manager
 dependencies[] = libraries
+php = 5.4
 files[] = includes/PHPFFMpegLogger.inc
 files[] = includes/PHPFFMpegCache.inc
 files[] = test/PHPFFMpegTestCase.test
