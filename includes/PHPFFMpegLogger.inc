@@ -5,7 +5,7 @@
  */
 
 /**
- * A DrupalWatchdog adapter to PSR Logger.
+ * Drupal watchdog to PSR logger adapter
  */
 class PHPFFMpegLogger implements \Psr\Log\LoggerInterface {
 
@@ -72,6 +72,7 @@ class PHPFFMpegLogger implements \Psr\Log\LoggerInterface {
    * {@inheritdoc}
    */
   public function debug($message, array $context = array()) {
+    debug(__FUNCTION__);
     $this->log(__FUNCTION__, $message, $context);
   }
 
