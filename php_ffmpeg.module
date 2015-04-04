@@ -79,7 +79,7 @@ function _php_ffmpeg_cache() {
 function php_ffmpeg_menu() {
   return array(
     'admin/config/development/php-ffmpeg' => array(
-      'title' => 'PHP-FFmpeg',
+      'title' => 'PHP-FFMpeg',
       'description' => 'Configure the PHP-FFMpeg library.',
       'page callback' => 'drupal_get_form',
       'page arguments' => array('php_ffmpeg_settings'),
