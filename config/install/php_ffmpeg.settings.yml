@@ -1,0 +1,5 @@
+ffmpeg_binary: ''
+ffprobe_binary: ''
+execution_timeout: 0
+threads_amount: 0
+monolog_channel: null
