@@ -28,7 +28,6 @@ class PHPFFMpegSettings extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, \Drupal\Core\Form\FormStateInterface $form_state) {
-    $form = [];
     $form['ffmpeg_binary'] = [
       '#type' => 'textfield',
       '#title' => t('ffmpeg binary'),
@@ -57,19 +56,6 @@ class PHPFFMpegSettings extends ConfigFormBase {
       '#min' => 0,
       '#step' => 1,
     ];
-
-    if (function_exists('monolog_channel_info_load_all') && ($channels = monolog_channel_info_load_all())) {
-      $channel_options = [NULL => t('-None-')] + array_map(function($channel) {
-        return $channel['label'];
-      }, $channels);
-      $form['monolog_channel'] = [
-        '#type' => 'select',
-        '#title' => t('Monolog channel'),
-        '#description' => t('Select the monolog channel to use for logging.'),
-        '#default_value' => $this->config('php_ffmpeg.settings')->get('monolog_channel'),
-        '#options' => $channel_options,
-      ];
-    }
 
     return parent::buildForm($form, $form_state);
   }
@@ -102,11 +88,11 @@ class PHPFFMpegSettings extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->config('php_ffmpeg.settings')->set('ffmpeg_binary', $form_state->getValue('ffmpeg_binary'))
+    $this->config('php_ffmpeg.settings')
+      ->set('ffmpeg_binary', $form_state->getValue('ffmpeg_binary'))
       ->set('ffprobe_binary', $form_state->getValue('ffprobe_binary'))
       ->set('execution_timeout', $form_state->getValue('execution_timeout'))
       ->set('threads_amount', $form_state->getValue('threads_amount'))
-      ->set('ffmpeg_binary', $form_state->getValue('ffmpeg_binary'))
       ->save();
   }
 

@@ -16,6 +16,3 @@ php_ffmpeg.settings:
     threads_amount:
       type: integer
       label: 'Number of threads to use for ffmpeg commands.'
-    monolog_channel:
-      type: string
-      label: 'The monolog channel to use for logging.'
