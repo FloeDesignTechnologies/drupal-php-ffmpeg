@@ -5,6 +5,8 @@ namespace Drupal\php_ffmpeg;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Doctrine\Common\Cache\Cache;
+use FFMpeg\FFMpeg;
+use FFMpeg\FFProbe;
 
 /**
  * Factory class that provides a wrapper for the FFMpeg PHP extension.
@@ -21,7 +23,7 @@ class PHPFFMpegFactory {
   /**
    * Logger channel that logs execution within FFMpeg extension to watchdog.
    *
-   * @var Drupal\Core\Logger\LoggerChannelInterface
+   * @var \Drupal\Core\Logger\LoggerChannelInterface
    *   The registered logger for this channel.
    */
   protected $logger;
@@ -38,7 +40,7 @@ class PHPFFMpegFactory {
    *
    * @param \Doctrine\Common\Cache\Cache $cache
    *   The cache backend.
-   * @param Drupal\Core\Logger\LoggerChannelInterface $logger
+   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
    *   Prefix used for appending to cached item identifiers.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   A configuration factory instance.
@@ -55,15 +57,11 @@ class PHPFFMpegFactory {
    * @return \FFMpeg\FFMpeg
    */
   public function getFFMpeg() {
-    static $ffmpeg = NULL;
-    if (!$ffmpeg) {
-      $ffmpeg = \FFMpeg\FFMpeg::create(
-        $this->getFFMpegConfig(),
-        $this->logger,
-        $this->getFFMpegProbe()
-      );
-    }
-    return $ffmpeg;
+    return FFMpeg::create(
+      $this->getFFMpegConfig(),
+      $this->logger,
+      $this->getFFMpegProbe()
+    );
   }
 
   /**
@@ -72,15 +70,11 @@ class PHPFFMpegFactory {
    * @return \FFMpeg\FFProbe
    */
   public function getFFMpegProbe() {
-    static $ffprobe = NULL;
-    if (!$ffprobe) {
-      $ffprobe = \FFMpeg\FFProbe::create(
-        $this->getFFMpegConfig(),
-        $this->logger,
-        $this->cache
-      );
-    }
-    return $ffprobe;
+    return FFProbe::create(
+      $this->getFFMpegConfig(),
+      $this->logger,
+      $this->cache
+    );
   }
 
   /**
