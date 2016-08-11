@@ -2,6 +2,9 @@ services:
   php_ffmpeg:
     class: \FFMpeg\FFMpeg
     factory: php_ffmpeg.factory:getFFMpeg
+  php_ffmpeg_probe:
+      class: \FFMpeg\FFMpeg
+      factory: php_ffmpeg.factory:getFFMpegProbe
   php_ffmpeg.factory:
     class: Drupal\php_ffmpeg\PHPFFMpegFactory
     arguments: ['@php_ffmpeg.cache', '@logger.channel.php_ffmpeg', '@config.factory']
